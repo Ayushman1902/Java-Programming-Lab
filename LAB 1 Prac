@@ -1,0 +1,58 @@
+import java.util.Scanner;
+
+public class Employee {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+      
+        System.out.print("Enter Employee ID: ");
+        int employeeId = sc.nextInt();
+        sc.nextLine();
+
+        System.out.print("Enter Employee Name: ");
+        String name = sc.nextLine();
+
+
+        int[] attendance = new int[7];
+        int presentDays = 0;
+        int absentDays = 0;
+
+        System.out.println("Enter attendance for 7 days (1 = Present, 0 = Absent):");
+
+        for (int i = 0; i < 7; i++) {
+            attendance[i] = sc.nextInt();
+
+  
+            if (attendance[i] != 0 && attendance[i] != 1) {
+                System.out.println("Invalid Attendance Input");
+                sc.close();
+                return;
+            }
+
+            if (attendance[i] == 1) {
+                presentDays++;
+            } else {
+                absentDays++;
+            }
+        }
+
+
+        double percentage = (presentDays / 7.0) * 100;
+
+
+        System.out.println("\nAttendance Report");
+        System.out.println("Employee ID = " + employeeId);
+        System.out.println("Employee Name = " + name);
+        System.out.printf("Attendance = %.2f%%\n", percentage);
+        System.out.println("Absent Days = " + absentDays);
+
+        if (percentage >= 90) {
+            System.out.println("Eligible");
+        } else {
+            System.out.println("Not Eligible");
+        }
+
+        sc.close();
+    }
+}
